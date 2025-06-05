@@ -8,10 +8,11 @@ class Auth extends Controller
         echo '<pre>';
         print_r($_SESSION);
         die();
-        if (isset($_SESSION['user'])) {
+        if (!empty($_SESSION['user']) && isset($_SESSION['user']['id'])) {
             header('Location: ' . BASEURL . '/home');
             exit;
         }
+
         $this->view('auth/login');
     }
 
