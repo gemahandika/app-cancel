@@ -6,33 +6,27 @@ use PHPMailer\PHPMailer\Exception;
 class Home extends Controller
 
 {
-    // public function __construct()
-    // {
-    //     echo '<pre>';
-    //     print_r($_SESSION);
-    //     exit;
-    //     if (!isset($_SESSION['user'])) {
-    //         header('Location: ' . BASEURL . '/auth');
-    //         exit;
-    //     }
-    // }
+    public function __construct()
+    {
+        if (!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/auth');
+            exit;
+        }
+    }
 
     public function index()
     {
-        // echo '<pre>';
-        // print_r($_SESSION);
-        // exit;
         $data['judul'] = 'Home';
-        // $userRole = $_SESSION['user']['role'];
-        // $username = $_SESSION['user']['username'];
-        // $data['userRole'] = $userRole; // <-- Tambahkan baris ini
-        // if ($userRole == 'agen') {
-        //     $data['open'] = $this->model('Report_model')->getReportByUserId($username);
-        // } else {
-        //     $data['open'] = $this->model('Report_model')->getReportByOpen();
-        // }
-        $this->view('templates/header');
-        // $this->view('home/index');
+        $userRole = $_SESSION['user']['role'];
+        $username = $_SESSION['user']['username'];
+        $data['userRole'] = $userRole; // <-- Tambahkan baris ini
+        if ($userRole == 'agen') {
+            $data['open'] = $this->model('Report_model')->getReportByUserId($username);
+        } else {
+            $data['open'] = $this->model('Report_model')->getReportByOpen();
+        }
+        $this->view('templates/header', $data);
+        $this->view('home/index', $data);
         $this->view('templates/footer');
     }
 
