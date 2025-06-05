@@ -3,7 +3,14 @@
 class Auth extends Controller
 {
 
-
+    public function index()
+    {
+        if (isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/home');
+            exit;
+        }
+        $this->view('auth/login');
+    }
 
     public function login()
     {
@@ -25,9 +32,9 @@ class Auth extends Controller
                 'role' => $user['role'],
                 'name' => $user['name']
             ];
-            error_log("Session set: " . print_r($_SESSION['user'], true));
+
             Flasher::setLoginFlash('Login berhasil sebagai ' . $user['role'], 'success');
-            header('Location: ' . BASEURL . '/home');
+            header('Location: ' . BASEURL . '/' . $user['role']);
             exit;
         } else {
             Flasher::setLoginFlash('Username atau password salah.', 'danger');
