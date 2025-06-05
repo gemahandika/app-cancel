@@ -32,7 +32,7 @@ class Auth extends Controller
                 'role' => $user['role'],
                 'name' => $user['name']
             ];
-
+            error_log("Session set: " . print_r($_SESSION['user'], true));
             Flasher::setLoginFlash('Login berhasil sebagai ' . $user['role'], 'success');
             header('Location: ' . BASEURL . '/home');
             exit;
