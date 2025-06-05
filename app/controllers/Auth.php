@@ -34,7 +34,7 @@ class Auth extends Controller
             ];
 
             Flasher::setLoginFlash('Login berhasil sebagai ' . $user['role'], 'success');
-            header('Location: ' . BASEURL . '/home');
+            header('Location: ' . BASEURL . '/user');
             exit;
         } else {
             Flasher::setLoginFlash('Username atau password salah.', 'danger');
