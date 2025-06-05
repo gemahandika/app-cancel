@@ -5,14 +5,10 @@ class Auth extends Controller
 
     public function index()
     {
-        echo '<pre>';
-        print_r($_SESSION);
-        die();
-        if (!empty($_SESSION['user']) && isset($_SESSION['user']['id'])) {
+        if (isset($_SESSION['user'])) {
             header('Location: ' . BASEURL . '/home');
             exit;
         }
-
         $this->view('auth/login');
     }
 
@@ -38,7 +34,7 @@ class Auth extends Controller
             ];
 
             Flasher::setLoginFlash('Login berhasil sebagai ' . $user['role'], 'success');
-            header('Location: ' . BASEURL . '/' . $user['role']);
+            header('Location: ' . BASEURL .  '/home');
             exit;
         } else {
             Flasher::setLoginFlash('Username atau password salah.', 'danger');
