@@ -6,19 +6,22 @@ use PHPMailer\PHPMailer\Exception;
 class Home extends Controller
 
 {
-    public function __construct()
+    // public function __construct()
+    // {
+    //     echo '<pre>';
+    //     print_r($_SESSION);
+    //     exit;
+    //     if (!isset($_SESSION['user'])) {
+    //         header('Location: ' . BASEURL . '/auth');
+    //         exit;
+    //     }
+    // }
+
+    public function index()
     {
         echo '<pre>';
         print_r($_SESSION);
         exit;
-        if (!isset($_SESSION['user'])) {
-            header('Location: ' . BASEURL . '/auth');
-            exit;
-        }
-    }
-
-    public function index()
-    {
         $data['judul'] = 'Home';
         $userRole = $_SESSION['user']['role'];
         $username = $_SESSION['user']['username'];
