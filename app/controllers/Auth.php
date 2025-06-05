@@ -3,14 +3,7 @@
 class Auth extends Controller
 {
 
-    public function index()
-    {
-        if (isset($_SESSION['user'])) {
-            header('Location: ' . BASEURL . '/home');
-            exit;
-        }
-        $this->view('auth/login');
-    }
+
 
     public function login()
     {
