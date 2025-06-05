@@ -8,10 +8,14 @@ class Home extends Controller
 {
     public function __construct()
     {
-        // if (!isset($_SESSION['user'])) {
-        //     header('Location: ' . BASEURL . '/auth');
-        //     exit;
-        // }
+        // echo '<pre>';
+        // print_r($_SESSION['user']['role']);
+        // echo '</pre>';
+        // exit;
+        if (!isset($_SESSION['user']['role'])) {
+            header('Location: ' . BASEURL . '/auth');
+            exit;
+        }
     }
 
     public function index()

@@ -5,16 +5,10 @@ class User extends Controller
 
     public function __construct()
     {
-        if (!isset($_SESSION['user'])) {
-            header('Location: ' . BASEURL . '/auth');
-            exit;
-        }
-        // Cek role, hanya superadmin dan admin yang boleh akses
-        $role = $_SESSION['user']['role'];
-        if ($role !== 'superadmin' && $role !== 'admin') {
-            header('Location: ' . BASEURL . '/home'); // Ganti '/unauthorized' dengan halaman yang sesuai
-            exit;
-        }
+        echo '<pre>';
+        print_r($_SESSION);
+        echo '</pre>';
+        exit;
     }
 
     public function index()
