@@ -8,8 +8,9 @@ class Home extends Controller
 {
     public function __construct()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/auth');
+            exit;
         }
     }
 
@@ -17,10 +18,10 @@ class Home extends Controller
     {
         $data['judul'] = 'Home';
         $userRole = $_SESSION['user']['role'];
-        $userId = $_SESSION['user']['username'];
+        $username = $_SESSION['user']['username'];
         $data['userRole'] = $userRole; // <-- Tambahkan baris ini
         if ($userRole == 'agen') {
-            $data['open'] = $this->model('Report_model')->getReportByUserId($userId);
+            $data['open'] = $this->model('Report_model')->getReportByUserId($username);
         } else {
             $data['open'] = $this->model('Report_model')->getReportByOpen();
         }
