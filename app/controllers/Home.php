@@ -8,10 +8,9 @@ class Home extends Controller
 {
     public function __construct()
     {
-        // if (!isset($_SESSION['user'])) {
-        //     echo "Session belum terbentuk!";
-        //     exit;
-        // }
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
     }
 
     public function index()
