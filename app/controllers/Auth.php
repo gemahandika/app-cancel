@@ -5,6 +5,9 @@ class Auth extends Controller
 
     public function index()
     {
+        echo '<pre>';
+        print_r($_SESSION);
+        die();
         if (isset($_SESSION['user'])) {
             header('Location: ' . BASEURL . '/home');
             exit;
