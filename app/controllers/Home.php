@@ -19,20 +19,20 @@ class Home extends Controller
 
     public function index()
     {
-        echo '<pre>';
-        print_r($_SESSION);
-        exit;
+        // echo '<pre>';
+        // print_r($_SESSION);
+        // exit;
         $data['judul'] = 'Home';
-        $userRole = $_SESSION['user']['role'];
-        $username = $_SESSION['user']['username'];
-        $data['userRole'] = $userRole; // <-- Tambahkan baris ini
-        if ($userRole == 'agen') {
-            $data['open'] = $this->model('Report_model')->getReportByUserId($username);
-        } else {
-            $data['open'] = $this->model('Report_model')->getReportByOpen();
-        }
-        $this->view('templates/header', $data);
-        $this->view('home/index', $data);
+        // $userRole = $_SESSION['user']['role'];
+        // $username = $_SESSION['user']['username'];
+        // $data['userRole'] = $userRole; // <-- Tambahkan baris ini
+        // if ($userRole == 'agen') {
+        //     $data['open'] = $this->model('Report_model')->getReportByUserId($username);
+        // } else {
+        //     $data['open'] = $this->model('Report_model')->getReportByOpen();
+        // }
+        $this->view('templates/header');
+        // $this->view('home/index');
         $this->view('templates/footer');
     }
 
