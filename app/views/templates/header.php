@@ -1,5 +1,4 @@
 <?php
-
 $namaUser = $_SESSION['user']['name'] ?? 'NONAME';
 $UserID = $_SESSION['user']['username'] ?? 'NONAME';
 ?>
