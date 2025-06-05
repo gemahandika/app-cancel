@@ -1,0 +1,40 @@
+# ========================
+# COMPOSER
+/vendor/
+
+# ========================
+# CONFIG FILE (JIKA SENSITIF)
+app/config/config.php
+
+# ========================
+# OS / SISTEM
+.DS_Store
+Thumbs.db
+
+# ========================
+# EDITOR / IDE
+.vscode/
+.idea/
+
+# ========================
+# LOG / CACHE / TEMPORARY
+*.log
+*.tmp
+*.cache
+*.bak
+*.swp
+*.swo
+
+# ========================
+# UPLOADS (JIKA ADA)
+public/uploads/
+
+# ========================
+# FRONTEND TOOLS
+node_modules/
+
+# ========================
+# ZIP/EXPORT
+*.zip
+*.rar
+*.tar.gz
