@@ -7,8 +7,9 @@ class App
 
     public function __construct()
     {
-        $url = $this->parseURL();
 
+        $url = $this->parseURL();
+        var_dump($url);
         // Debugging
         echo "Parsed URL: ";
         print_r($url); // Tambahkan ini untuk melihat apakah URL terparsing dengan benar
