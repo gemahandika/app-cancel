@@ -1,4 +1,6 @@
-Options +FollowSymLinks
 RewriteEngine On
+RewriteBase /resicancel.jnemedan.com/
 
-RewriteRule ^tesrewrite$ tesrewrite.php [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
