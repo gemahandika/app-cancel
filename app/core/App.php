@@ -9,7 +9,11 @@ class App
     {
         $url = $this->parseURL();
 
-        // Cek apakah controller ada di dalam URL dan file controller ada
+        // Debugging
+        echo "Parsed URL: ";
+        print_r($url); // Tambahkan ini untuk melihat apakah URL terparsing dengan benar
+
+        // controller
         if (isset($url[0]) && file_exists('app/controllers/' . $url[0] . '.php')) {
             $this->controller = $url[0];
             unset($url[0]);
@@ -18,7 +22,7 @@ class App
         require_once 'app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
-        // Cek apakah method ada dalam controller dan dipanggil
+        // method
         if (isset($url[1])) {
             if (method_exists($this->controller, $url[1])) {
                 $this->method = $url[1];
@@ -26,12 +30,12 @@ class App
             }
         }
 
-        // Ambil params jika ada
+        // params
         if (!empty($url)) {
             $this->params = array_values($url);
         }
 
-        // Jalankan controller, method, dan kirim params
+        // jalankan controller dan method serta kirimkan params
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
 
