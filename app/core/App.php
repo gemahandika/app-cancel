@@ -1,31 +1,30 @@
-
 <?php
 class App
 {
-    protected $controller = 'Home'; // Default controller
-    protected $method = 'index'; // Default method
+    protected $controller = 'Home'; // Controller default
+    protected $method = 'index'; // Method default
     protected $params = [];
 
     public function __construct()
     {
         // Parse URL
         $url = $this->parseURL();
-        var_dump($url); // Debugging: Lihat apakah URL terurai dengan benar
-        exit; // Debugging exit point
+        var_dump($url); // Debugging: Cek hasil parsing
+        exit; // Berhenti di sini untuk debugging
 
-        // Cek apakah controller ada di direktori app/controllers
+        // Cek apakah controller ada di folder app/controllers
         if (isset($url[0]) && file_exists('app/controllers/' . ucfirst($url[0]) . '.php')) {
-            $this->controller = ucfirst($url[0]); // Controller yang sesuai
+            $this->controller = ucfirst($url[0]); // Menyesuaikan controller sesuai URL
             unset($url[0]); // Hapus controller dari URL
         }
 
         // Include controller
         require_once 'app/controllers/' . $this->controller . '.php';
-        $this->controller = new $this->controller;
+        $this->controller = new $this->controller; // Inisialisasi controller
 
         // Cek apakah method ada di controller
         if (isset($url[1]) && method_exists($this->controller, $url[1])) {
-            $this->method = $url[1]; // Method yang sesuai
+            $this->method = $url[1]; // Menyesuaikan method sesuai URL
             unset($url[1]); // Hapus method dari URL
         }
 
