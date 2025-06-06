@@ -10,9 +10,12 @@ class App
     {
         $url = $this->parseURL();
         //controller
+        // Pastikan controller yang dipanggil adalah 'Auth' jika logout
         if (isset($url[0]) && file_exists('app/controllers/' . $url[0] . '.php')) {
             $this->controller = $url[0];
             unset($url[0]);
+        } else {
+            $this->controller = 'Home';  // Default controller
         }
 
 
