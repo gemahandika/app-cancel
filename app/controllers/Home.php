@@ -9,10 +9,10 @@ class Home extends Controller
     public function __construct()
     {
         var_dump($_SESSION); // Periksa apakah session sudah ada
-        if (!isset($_SESSION['user'])) {
-            header('Location: ' . BASEURL . '/auth');
-            exit;
-        }
+        // if (!isset($_SESSION['user'])) {
+        //     header('Location: ' . BASEURL . '/auth');
+        //     exit;
+        // }
     }
 
     public function index()
