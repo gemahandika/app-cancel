@@ -1,6 +1,6 @@
    <main>
        <div class="container-fluid px-4">
-           <h4 class="mt-4" style="border-bottom: solid 1px black;">Form Cancel Resi</h4>
+           <h4 class="mt-4" style="border-bottom: solid 1px black;">Form Cancel Resi 1</h4>
            <div class="alert alert-primary" role="alert">
                <b>Perhatian !!</b> Resi yang di request cancel atau status nya OPEN, akan pindah ke report setelah di proses oleh ADMIN / TIM IT
            </div>
