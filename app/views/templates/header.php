@@ -1,5 +1,5 @@
 <?php
-if (!session_id()) session_start();
+
 $namaUser = $_SESSION['user']['name'] ?? 'NONAME';
 $UserID = $_SESSION['user']['username'] ?? 'NONAME';
 ?>

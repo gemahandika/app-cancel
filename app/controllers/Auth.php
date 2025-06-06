@@ -6,12 +6,11 @@ class Auth extends Controller
     public function index()
     {
         if (isset($_SESSION['user'])) {
-            header('Location: ' . BASEURL . '/home');
+            header('Location: ' . BASEURL . '/user');
             exit;
         }
         $this->view('auth/login');
     }
-
 
     public function login()
     {
@@ -33,8 +32,7 @@ class Auth extends Controller
                 'role' => $user['role'],
                 'name' => $user['name']
             ];
-            // Tambahkan ini untuk debug
-            file_put_contents('session_debug.log', print_r($_SESSION, true));
+
             Flasher::setLoginFlash('Login berhasil sebagai ' . $user['role'], 'success');
             header('Location: ' . BASEURL . '/home');
             exit;
