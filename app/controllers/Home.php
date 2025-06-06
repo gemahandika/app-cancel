@@ -8,10 +8,9 @@ class Home extends Controller
 {
     public function __construct()
     {
-        echo '<pre>';
-        print_r($_SESSION);
-        echo '</pre>';
+        echo 'Redirecting to: ' . BASEURL . '/home';
         exit;
+
         if (!isset($_SESSION['user'])) {
             header('Location: ' . BASEURL . '/auth');
             exit;
