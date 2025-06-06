@@ -33,7 +33,8 @@ class Auth extends Controller
                 'role' => $user['role'],
                 'name' => $user['name']
             ];
-
+            // Tambahkan ini untuk debug
+            file_put_contents('session_debug.log', print_r($_SESSION, true));
             Flasher::setLoginFlash('Login berhasil sebagai ' . $user['role'], 'success');
             header('Location: ' . BASEURL . '/home');
             exit;
