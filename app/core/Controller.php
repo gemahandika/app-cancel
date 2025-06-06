@@ -1,7 +1,5 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+if (!session_id()) session_start();
 class Controller
 {
     public function view($view, $data = [])

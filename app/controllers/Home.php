@@ -8,11 +8,8 @@ class Home extends Controller
 {
     public function __construct()
     {
-        var_dump($_SESSION); // Periksa apakah session sudah ada
-        // if (!isset($_SESSION['user'])) {
-        //     header('Location: ' . BASEURL . '/auth');
-        //     exit;
-        // }
+        if (!session_id()) session_start();  // WAJIB panggil session_start() dulu
+        var_dump($_SESSION);
     }
 
     public function index()
