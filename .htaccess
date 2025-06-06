@@ -1,8 +1,5 @@
-Options -Multiviews
-
 RewriteEngine On
 RewriteBase /
 
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^auth/logout$ /index.php [L]
+# Arahkan permintaan '/auth/logout' ke index.php
+RewriteRule ^auth/logout$ index.php?url=auth/logout [L]

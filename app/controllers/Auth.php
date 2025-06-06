@@ -42,15 +42,14 @@ class Auth extends Controller
             exit;
         }
     }
-
     public function logout()
     {
         session_start();
         session_unset();
         session_destroy();
 
-        echo 'Session destroyed!';
-        var_dump($_SESSION);
+        echo "Logout berhasil"; // Untuk memastikan method dipanggil
+        header('Location: ' . BASEURL . '/auth');
         exit;
     }
 }

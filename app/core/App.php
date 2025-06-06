@@ -1,5 +1,4 @@
 <?php
-
 class App
 {
     protected $controller = 'Home';
@@ -10,18 +9,16 @@ class App
     {
         $url = $this->parseURL();
 
+        // Cek apakah controller ada di dalam URL dan file controller ada
         if (isset($url[0]) && file_exists('app/controllers/' . $url[0] . '.php')) {
             $this->controller = $url[0];
             unset($url[0]);
-        } else {
-            $this->controller = 'Home';  // Default controller
         }
-
 
         require_once 'app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
-        // method
+        // Cek apakah method ada dalam controller dan dipanggil
         if (isset($url[1])) {
             if (method_exists($this->controller, $url[1])) {
                 $this->method = $url[1];
@@ -29,12 +26,12 @@ class App
             }
         }
 
-        // params
+        // Ambil params jika ada
         if (!empty($url)) {
             $this->params = array_values($url);
         }
 
-        // jalankan controller dan method serta kirimkan params jika ada
+        // Jalankan controller, method, dan kirim params
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
 
