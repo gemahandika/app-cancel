@@ -8,7 +8,7 @@ if (!session_id()) session_start();
 
 
 // index.php atau bootstrap.php
-require_once 'aap/core/Autoloader.php';
+require_once 'app/core/Autoloader.php';
 
 // Registrasikan autoload
 Autoloader::register();
