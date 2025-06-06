@@ -45,7 +45,7 @@ class Auth extends Controller
 
     public function logout()
     {
-        if (!session_id()) session_start();
+        session_start();
         session_unset();
         session_destroy();
 
