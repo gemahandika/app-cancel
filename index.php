@@ -6,4 +6,12 @@ error_reporting(E_ALL);
 
 if (!session_id()) session_start();
 
-require_once 'app/init.php';
+
+// index.php atau bootstrap.php
+require_once 'core/Autoloader.php';
+
+// Registrasikan autoload
+Autoloader::register();
+
+// Lanjutkan dengan inisialisasi aplikasi
+$app = new App();
