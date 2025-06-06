@@ -7,8 +7,3 @@ error_reporting(E_ALL);
 if (!session_id()) session_start();
 
 require_once 'app/init.php';
-
-echo '<pre>';
-var_dump($_GET);
-echo '</pre>';
-exit;
