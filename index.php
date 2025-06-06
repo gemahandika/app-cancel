@@ -9,6 +9,6 @@ if (!session_id()) session_start();
 require_once 'app/init.php';
 
 echo '<pre>';
-print_r($_GET);
+var_dump($_GET);
 echo '</pre>';
 exit;
