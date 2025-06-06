@@ -10,19 +10,19 @@ class App
         $url = $this->parseURL();
 
         // Controller
-        if (isset($url[0]) && file_exists('app/controllers/' . $url[1] . '.php')) {
+        if (isset($url[1]) && file_exists('app/controllers/' . $url[1] . '.php')) {
             $this->controller = $url[0];
-            unset($url[0]);
+            unset($url[1]);
         }
 
         require_once 'app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
         // Method
-        if (isset($url[1])) {
+        if (isset($url[2])) {
             if (method_exists($this->controller, $url[2])) {
                 $this->method = $url[1];
-                unset($url[1]);
+                unset($url[2]);
             }
         }
 
