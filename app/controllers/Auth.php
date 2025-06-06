@@ -14,6 +14,8 @@ class Auth extends Controller
 
     public function login()
     {
+        echo 'Session path: ' . session_save_path();
+        exit;
         $username = $_POST['username'];
         $password = $_POST['password'];
 
@@ -34,6 +36,10 @@ class Auth extends Controller
             ];
 
             Flasher::setLoginFlash('Login berhasil sebagai ' . $user['role'], 'success');
+            echo '<pre>';
+            print_r($_SESSION);
+            echo '</pre>';
+            exit;
             header('Location: ' . BASEURL . '/home');
             exit;
         } else {
