@@ -5,10 +5,10 @@ class Auth extends Controller
 
     public function index()
     {
-        if (isset($_SESSION['user'])) {
-            header('Location: ' . BASEURL . '/user');
-            exit;
-        }
+        // if (isset($_SESSION['user'])) {
+        //     header('Location: ' . BASEURL . '/user');
+        //     exit;
+        // }
         $this->view('auth/login');
     }
 
