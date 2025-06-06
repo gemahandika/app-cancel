@@ -1,44 +1,41 @@
+
 <?php
 class App
 {
-    protected $controller = 'Home';
-    protected $method = 'index';
+    protected $controller = 'Home'; // Default controller
+    protected $method = 'index'; // Default method
     protected $params = [];
 
     public function __construct()
     {
-        // Parsing URL
         $url = $this->parseURL();
-        var_dump($url);  // Debug: cek hasil parsing
-        exit;
+        var_dump($url); // Debug: cek hasil parsing
+        exit; // Debug exit point
 
-        // Menentukan controller
+        // Controller
         if (isset($url[0]) && file_exists('app/controllers/' . ucfirst($url[0]) . '.php')) {
-            $this->controller = ucfirst($url[0]); // Mengambil controller dari URL
-            unset($url[0]);  // Menghapus controller dari URL setelah diproses
+            $this->controller = ucfirst($url[0]);
+            unset($url[0]);
         }
 
-        // Memanggil file controller
         require_once 'app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
-        // Menentukan method
+        // Method
         if (isset($url[1]) && method_exists($this->controller, $url[1])) {
-            $this->method = $url[1]; // Mengambil method dari URL
-            unset($url[1]);  // Menghapus method dari URL setelah diproses
+            $this->method = $url[1];
+            unset($url[1]);
         }
 
-        // Mengambil parameter (sisa URL setelah controller dan method)
+        // Params
         $this->params = $url ? array_values($url) : [];
 
-        // Memanggil method pada controller dengan parameter
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
 
     public function parseURL()
     {
         if (isset($_GET['url'])) {
-            // Memecah URL berdasarkan '/' dan membersihkan karakter yang tidak perlu
             return explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
         }
         return [];
