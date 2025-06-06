@@ -13,7 +13,7 @@ class Database
     public function __construct()
     {
         // Ambil dari config
-        require_once __DIR__ . '/../config/config.php';
+        // require_once __DIR__ . '/../config/config.php';
 
         $this->host = DB_HOST;
         $this->user = DB_USER;
