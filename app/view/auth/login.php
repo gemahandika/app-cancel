@@ -12,7 +12,8 @@
         <p style="color: red;"><?= $error ?></p>
     <?php endif; ?>
 
-    <form method="post">
+    <form action="<?= base_url('login') ?>" method="post">
+
         <label>Username:</label><br>
         <input type="text" name="username" required><br><br>
 

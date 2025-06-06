@@ -11,7 +11,7 @@ $user = $_SESSION['user'];
 
 <body>
     <h2>Selamat Datang, <?= htmlspecialchars($user['name']) ?> (<?= $user['role'] ?>)</h2>
-    <a href="/logout">Logout</a>
+    <a href="<?= base_url('logout') ?>">Logout</a>
 
     <hr>
     <p>Menu umum</p>

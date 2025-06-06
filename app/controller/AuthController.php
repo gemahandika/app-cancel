@@ -32,7 +32,7 @@ class AuthController
                         'role' => $user['role'],
                         'status' => $user['status']
                     ];
-                    header("Location: /dashboard");
+                    header("Location: " . base_url('dashboard'));
                     exit;
                 }
             } else {
@@ -48,6 +48,6 @@ class AuthController
     public function logout()
     {
         session_destroy();
-        header("Location: /login");
+        header("Location: " . base_url('login'));
     }
 }
