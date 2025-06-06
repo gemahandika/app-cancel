@@ -9,8 +9,7 @@ class App
     {
         // Parse URL
         $url = $this->parseURL();
-        var_dump($url); // Debugging: Cek hasil parsing
-        exit; // Berhenti di sini untuk debugging
+
 
         // Cek apakah controller ada di folder app/controllers
         if (isset($url[0]) && file_exists('app/controllers/' . ucfirst($url[0]) . '.php')) {
