@@ -14,7 +14,7 @@ class login extends Controller
 
         $user = $this->model('User_model')->getUserByUsername($username);
 
-        if ($user && password_verify($password, $user['password'])) {
+        if ($user && MD5($password, $user['password'])) {
             session_start();
             $_SESSION['user'] = $user;
             header('Location: ' . BASEURL . '/login/dashboard');
