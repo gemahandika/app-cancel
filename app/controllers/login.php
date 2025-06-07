@@ -1,21 +1,21 @@
 <?php
 
-class login extends Controller
+class Login extends Controller
 {
     public function index()
     {
         session_start();
         if (isset($_SESSION['user'])) {
-            header('Location: ' . BASEURL . '/login/dashboard');
+            header('Location: ' . BASEURL . '/dashboard');
             exit;
         }
+
         $this->view('login/index');
     }
 
     public function auth()
     {
         session_start();
-
         $username = $_POST['username'];
         $password = $_POST['password'];
 
@@ -23,23 +23,11 @@ class login extends Controller
 
         if ($user && md5($password) === $user['password']) {
             $_SESSION['user'] = $user;
-            header('Location: ' . BASEURL . '/login/dashboard');
+            header('Location: ' . BASEURL . '/dashboard');
             exit;
         } else {
             echo "Login gagal!";
         }
-    }
-
-
-    public function dashboard()
-    {
-        session_start();
-        if (!isset($_SESSION['user'])) {
-            header('Location: ' . BASEURL . '/login');
-            exit;
-        }
-
-        $this->view('login/dashboard');
     }
 
     public function logout()
