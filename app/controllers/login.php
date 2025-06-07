@@ -4,7 +4,7 @@ class Login extends Controller
 {
     public function index()
     {
-        session_start();
+        // session_start();
         if (isset($_SESSION['user'])) {
             header('Location: ' . BASEURL . '/Dashboard');
             exit;
