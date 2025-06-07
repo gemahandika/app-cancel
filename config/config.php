@@ -1,6 +1,6 @@
 <?php
 
-define('BASEURL', 'https://resicancel.jnemedan.com');
+define('BASEURL', 'https://appcancel.jnemedan.com/public');
 
 // DB
 define('DB_HOST', 'localhost');
