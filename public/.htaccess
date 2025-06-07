@@ -1,4 +1,8 @@
 RewriteEngine On
+
+# Jika file atau folder tidak ada
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+# Arahkan semua ke index.php
+RewriteRule ^ index.php [QSA,L]
