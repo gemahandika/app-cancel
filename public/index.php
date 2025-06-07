@@ -1,13 +1,8 @@
 <?php
-ini_set('session.save_path', '/tmp');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-session_set_cookie_params([
-    'lifetime' => 0,
-    'path' => '/',
-    'domain' => 'resicancel.jnemedan.com',
-    'secure' => false, // atau true kalau pakai HTTPS valid
-    'httponly' => true,
-]);
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
