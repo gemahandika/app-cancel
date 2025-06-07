@@ -7,10 +7,10 @@ class Dashboard extends Controller
         session_start();
 
         if (!isset($_SESSION['user'])) {
-            header('Location: ' . BASEURL . '/login');
+            header('Location: ' . BASEURL . '/Login');
             exit;
         }
 
-        $this->view('dashboard/index');
+        $this->view('Dashboard/index');
     }
 }
