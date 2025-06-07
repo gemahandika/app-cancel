@@ -1,12 +1,13 @@
 <?php
 
-define('BASE_URL', 'http://localhost/app-cancel/public'); // ganti sesuai XAMPP kamu
+define('BASE_URL', 'https://appcancel.jnemedan.com');
+
 
 // Database (opsional jika ingin koneksi database)
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'db_cancel');
+define('DB_USER', 'jnee6778_mesit');
+define('DB_PASS', 'Jnemes2017');
+define('DB_NAME', 'jnee6778_db_cancel');
 
 // Autoloader sederhana
 spl_autoload_register(function ($class) {
