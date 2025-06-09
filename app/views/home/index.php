@@ -4,11 +4,7 @@
            <div class="alert alert-primary" role="alert">
                <b>Perhatian !!</b> Resi yang di request cancel atau status nya OPEN, akan pindah ke report setelah di proses oleh ADMIN / TIM IT
            </div>
-           <div class="row">
-               <div class="col-lg-6">
-               </div>
-           </div>
-
+           <?php Flasher::flash();  ?>
            <div class="card mb-4 mt-4">
                <div class="d-flex justify-content-between align-items-end p-2 flex-wrap gap-2 w-100">
                    <!-- FORM -->
@@ -92,7 +88,6 @@
        </div>
    </main>
 
-   <!-- Modal Edit -->
    <!-- Modal Edit -->
    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
        <div class="modal-dialog">
