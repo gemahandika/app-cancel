@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 $error = $_SESSION['error'] ?? '';
 unset($_SESSION['error']);
 ?>
