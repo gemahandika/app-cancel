@@ -73,4 +73,12 @@ class Resi_models
         $this->db->bind(':to', $to);
         return $this->db->resultSet();
     }
+
+    public function ubahStatusOpenMenjadiDone()
+    {
+        $query = "UPDATE tb_resi SET status = 'DONE', tgl_proses = NOW()  WHERE status = 'OPEN'";
+        $this->db->query($query);
+        $this->db->execute();
+        return $this->db->rowCount(); // Bisa digunakan kalau ingin tahu berapa data yang diubah
+    }
 }

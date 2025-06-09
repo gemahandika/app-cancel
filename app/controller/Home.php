@@ -1,5 +1,12 @@
 <?php
 require_once '../app/core/Flasher.php';
+require_once '../vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+$mail = new PHPMailer(true);
+
 class Home extends Controller
 {
     public function index()
@@ -50,6 +57,54 @@ class Home extends Controller
             exit;
         } else {
             Flasher::setFlash('Resi Gagal', 'ditambahkan', 'error');
+            header('Location: ' . BASE_URL . '/home');
+            exit;
+        }
+    }
+
+    public function kirimEmail()
+    {
+
+
+        $report = $this->model('Resi_models')->getReportByOpen();
+
+        $isiEmail = "Dear Team IT Helpdesk:\n";
+        $isiEmail .= "Mohon Bantuannya Untuk Mencancel Resi Berikut Ini : \n\n";
+        foreach ($report as $item) {
+            $isiEmail .= "{$item['no_resi']}\n";
+        }
+        $isiEmail .= "\n";
+        $isiEmail .= "Dikarenakan Petugas Salah Entry \n\n";
+        $isiEmail .= "Terima Kasih \n";
+        $isiEmail .= "Gemasyah Handika\n";
+        $isiEmail .= "IT JNE MEDAN\n";
+        $mail = new PHPMailer(true);
+
+        try {
+            // Server SMTP Outlook atau Office365
+            $mail->isSMTP();
+            $mail->Host = 'smtp.office365.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = EMAIL_USER;  // dari config_email.php
+            $mail->Password = EMAIL_PASS;  // dari config_email.php
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('mes.it2@jne.co.id', 'IT JNE MES');
+            $mail->addAddress('mes.it@jne.co.id', 'Helpdesk'); // Ganti tujuan
+
+            $mail->Subject = 'Cancel Resi Orion Hybrid';
+            $mail->Body    = $isiEmail;
+
+            $mail->send();
+
+            // ✅ Tambahkan baris ini untuk update status resi
+            $this->model('Resi_models')->ubahStatusOpenMenjadiDone();
+
+            Flasher::setFlash('Resi Berhasil', 'DiEmail ke Helpdesk', 'success');
+            header('Location: ' . BASE_URL . '/home');
+        } catch (Exception $e) {
+            Flasher::setFlash('Gagal', 'DiEmail ke Helpdesk', 'danger');
             header('Location: ' . BASE_URL . '/home');
             exit;
         }
