@@ -1,5 +1,6 @@
 <?php
 
+require_once '../app/core/Flasher.php';
 require_once '../app/models/User_models.php';
 
 class Auth
@@ -10,9 +11,7 @@ class Auth
             header('Location: ' . BASE_URL . '/home');
             exit;
         }
-        require_once '../app/views/templates/header.php';
         require_once '../app/views/auth/index.php';
-        require_once '../app/views/templates/footer.php';
     }
 
     public function login()
@@ -29,13 +28,21 @@ class Auth
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
             $_SESSION['name'] = $user['name'];
-
+            Flasher::setLoginFlash('Login berhasil sebagai ' . $user['role'], 'success');
             header('Location: ' . BASE_URL . '/home');
             exit;
         } else {
-            $_SESSION['error'] = 'Username atau password salah';
+            Flasher::setLoginFlash('Username atau password salah.', 'danger');
             header('Location: ' . BASE_URL . '/auth');
             exit;
         }
+    }
+
+    public function logout()
+    {
+        session_start();
+        session_destroy();
+        header('Location: ' . BASE_URL . '/auth');
+        exit;
     }
 }

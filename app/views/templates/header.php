@@ -1,5 +1,7 @@
 <?php
+require_once '../app/core/Flasher.php'; // Jika belum pakai composer/namespace
 
+Flasher::loginFlash(); // Tampilkan pesan jika ada
 $namaUser = $_SESSION['name']['name'] ?? 'NONAME';
 $UserID = $_SESSION['user']['username'] ?? 'NONAME';
 ?>

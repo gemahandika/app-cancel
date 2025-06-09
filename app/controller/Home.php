@@ -1,24 +1,27 @@
 <?php
 
-class Home
+class Home extends Controller
 {
     public function index()
     {
-        session_start();
         if (!isset($_SESSION['login'])) {
             header('Location: ' . BASE_URL . '/auth');
             exit;
         }
 
-        require_once '../app/views/templates/header.php';
-        require_once '../app/views/home/index.php';
-        require_once '../app/views/templates/footer.php';
-    }
-    public function logout()
-    {
-        session_start();
-        session_destroy();
-        header('Location: ' . BASE_URL . '/auth');
-        exit;
+        $data['judul'] = 'Home';
+        $userRole = $_SESSION['role'];     // ✅ PERBAIKI INI
+        $username = $_SESSION['username']; // ✅ PERBAIKI INI
+        $data['userRole'] = $userRole;
+
+        if ($userRole == 'agen') {
+            $data['open'] = $this->model('Resi_models')->getReportByUserId($username);
+        } else {
+            $data['open'] = $this->model('Resi_models')->getReportByOpen();
+        }
+
+        $this->view('templates/header', $data);
+        $this->view('home/index', $data);
+        $this->view('templates/footer');
     }
 }
