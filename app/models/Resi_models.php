@@ -54,4 +54,23 @@ class Resi_models
 
         return $this->db->rowCount();
     }
+
+    public function getReportByDateRange($from, $to)
+    {
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE status = :status AND tgl_req BETWEEN :from AND :to ORDER BY id_resi DESC');
+        $this->db->bind(':status', 'DONE');
+        $this->db->bind(':from', $from);
+        $this->db->bind(':to', $to);
+        return $this->db->resultSet();
+    }
+
+    public function getReportByDateRangeAndUserId($from, $to, $userId)
+    {
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE status = :status AND user_id = :user_id AND tgl_req BETWEEN :from AND :to ORDER BY id_resi DESC');
+        $this->db->bind(':status', 'DONE');
+        $this->db->bind(':user_id', $userId);
+        $this->db->bind(':from', $from);
+        $this->db->bind(':to', $to);
+        return $this->db->resultSet();
+    }
 }
