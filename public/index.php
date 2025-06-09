@@ -1,9 +1,7 @@
 <?php
 
-require_once '../app/config/config.php';
+require_once '../app/init.php';
 
-require_once '../app/core/Controller.php';
-require_once '../app/core/Database.php';
 
 $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : 'home/index';
 $url = explode('/', $url);
@@ -22,8 +20,8 @@ if (file_exists($controllerFile)) {
     if (method_exists($controller, $methodName)) {
         call_user_func_array([$controller, $methodName], $params);
     } else {
-        echo "Method '$methodName' tidak ditemukan di controller '$controllerName'.";
+        header('Location: ' . BASE_URL . '/home');
     }
 } else {
-    echo "Controller '$controllerName' tidak ditemukan.";
+    header('Location: ' . BASE_URL . '/home');
 }
