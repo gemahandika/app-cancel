@@ -10,9 +10,13 @@ class Home extends Controller
         }
 
         $data['judul'] = 'Home';
-        $userRole = $_SESSION['role'];     // ✅ PERBAIKI INI
-        $username = $_SESSION['username']; // ✅ PERBAIKI INI
+        $userRole = $_SESSION['role'];
+        $username = $_SESSION['username'];
+        $name = $_SESSION['name'];
+
         $data['userRole'] = $userRole;
+        $data['username'] = $username;
+        $data['name'] = $name;
 
         if ($userRole == 'agen') {
             $data['open'] = $this->model('Resi_models')->getReportByUserId($username);

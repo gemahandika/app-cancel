@@ -2,8 +2,6 @@
 require_once '../app/core/Flasher.php'; // Jika belum pakai composer/namespace
 
 Flasher::loginFlash(); // Tampilkan pesan jika ada
-$namaUser = $_SESSION['name']['name'] ?? 'NONAME';
-$UserID = $_SESSION['user']['username'] ?? 'NONAME';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +12,7 @@ $UserID = $_SESSION['user']['username'] ?? 'NONAME';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>App Cancel <?= $data['judul'] ?></title>
+    <title>App Cancel <?= $judul ?></title>
     <link rel="shortcut icon" href="<?= BASE_URL; ?>/img/JNE.png">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="<?= BASE_URL; ?>/css/style.css" rel="stylesheet" />
@@ -38,7 +36,7 @@ $UserID = $_SESSION['user']['username'] ?? 'NONAME';
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 d-flex align-items-center">
             <li class="nav-item me-2">
-                <span class="text-white small text-uppercase"><?= htmlspecialchars($UserID) ?></span>
+                <span class="text-white small text-uppercase"><?= htmlspecialchars($username) ?></span>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -56,7 +54,7 @@ $UserID = $_SESSION['user']['username'] ?? 'NONAME';
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <span class="nav-link mb-4" style="border-bottom: solid 1px white;"><?= htmlspecialchars($namaUser) ?></span>
+                        <span class="nav-link mb-4" style="border-bottom: solid 1px white;"><?= htmlspecialchars($name) ?></span>
                         <a class="nav-link" href="<?= BASE_URL; ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-barcode"></i></div>
                             Form Cancel

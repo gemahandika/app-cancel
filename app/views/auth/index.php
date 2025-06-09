@@ -1,6 +1,4 @@
 <?php
-session_start(); // Pastikan ini ada
-
 require_once '../app/core/Flasher.php'; // Jika belum pakai composer/namespace
 
 Flasher::loginFlash(); // Tampilkan pesan jika ada
