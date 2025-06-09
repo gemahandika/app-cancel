@@ -10,7 +10,7 @@ unset($_SESSION['error']);
     <p style="color:red;"><?= $error ?></p>
 <?php endif; ?>
 
-<form action="<?= BASE_URL ?>/auth/login" method="POST">
+<form action="<?= BASE_URL; ?>/auth/login" method="POST">
     <label for="username">Username:</label><br>
     <input type="text" name="username" required><br><br>
 

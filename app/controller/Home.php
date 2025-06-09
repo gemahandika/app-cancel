@@ -14,4 +14,11 @@ class Home
         require_once '../app/views/home/index.php';
         require_once '../app/views/templates/footer.php';
     }
+    public function logout()
+    {
+        session_start();
+        session_destroy();
+        header('Location: ' . BASE_URL . '/auth');
+        exit;
+    }
 }

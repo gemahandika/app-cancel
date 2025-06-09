@@ -6,6 +6,10 @@ class Auth
 {
     public function index()
     {
+        if (isset($_SESSION['login'])) {
+            header('Location: ' . BASE_URL . '/home');
+            exit;
+        }
         require_once '../app/views/templates/header.php';
         require_once '../app/views/auth/index.php';
         require_once '../app/views/templates/footer.php';
@@ -33,14 +37,5 @@ class Auth
             header('Location: ' . BASE_URL . '/auth');
             exit;
         }
-    }
-
-
-    public function logout()
-    {
-        session_start();
-        session_destroy();
-        header('Location: ' . BASE_URL . '/auth');
-        exit;
     }
 }

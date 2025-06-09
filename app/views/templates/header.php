@@ -11,7 +11,7 @@
         <h2>Header - App Cancel</h2>
 
         <?php if (isset($_SESSION['login'])): ?>
-            <a href="<?= BASE_URL ?>/auth/logout">Logout</a>
+            <a href="<?= BASE_URL ?>/home/logout">Logout</a>
         <?php endif; ?>
 
     </header>
