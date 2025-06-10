@@ -69,7 +69,7 @@ Flasher::loginFlash(); // Tampilkan pesan jika ada
                                 <a class="nav-link" href="<?= BASE_URL; ?>/report">Data Resi Cancel</a>
                             </nav>
                         </div>
-                        <?php if (isset($data['userRole']) && in_array($data['userRole'], ['superadmin'])) : ?>
+                        <?php if (isset($data['userRole']) && in_array($data['userRole'], ['superadmin', 'admin'])) : ?>
                             <a class="nav-link" href="<?= BASE_URL; ?>/user">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                                 Users

@@ -1,0 +1,79 @@
+<?php
+
+class User extends Controller
+{
+
+    public function __construct()
+    {
+        if (!isset($_SESSION['login'])) {
+            header('Location: ' . BASE_URL . '/auth');
+            exit;
+        }
+        if (!isset($_SESSION['role']) || !in_array($_SESSION['role'], ['superadmin', 'admin'])) {
+            header('Location: ' . BASE_URL . '/home');
+            exit;
+        }
+    }
+
+    public function index()
+    {
+        $data['judul'] = 'User';
+        $userRole = $_SESSION['role'];
+        $username = $_SESSION['username'];
+        $name = $_SESSION['name'];
+
+        $data['name'] = $name;
+        $data['username'] = $username;
+        $data['userRole'] = $userRole; // <-- Tambahkan baris ini
+        $data['user'] = $this->model('User_models')->getAllUsers();
+        $this->view('templates/header', $data);
+        $this->view('user/index', $data);
+        $this->view('templates/footer');
+    }
+
+    public function tambahUser()
+    {
+        $result = $this->model('User_models')->tambahDataUser($_POST);
+
+        if ($result === 'duplicate') {
+            Flasher::setFlash('Opppss!!', 'User Sudah Ada', 'error');
+            header('Location: ' . BASE_URL . '/user');
+            exit;
+        }
+
+        if ($result > 0) {
+            Flasher::setFlash('User', 'Berhasil ditambahkan', 'success');
+            header('Location: ' . BASE_URL . '/user');
+            exit;
+        } else {
+            Flasher::setFlash('User', 'Gagal ditambahkan', 'error');
+            header('Location: ' . BASE_URL . '/user');
+            exit;
+        }
+    }
+
+    public function editUser()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data = [
+                'id' => $_POST['edit-id'],
+                'username' => $_POST['edit-username'],
+                'role' => $_POST['edit-role'],
+                'name' => $_POST['edit-name'],
+                'cust_id' => $_POST['edit-custid'],
+                'status' => $_POST['edit-status']
+            ];
+
+            $result = $this->model('User_models')->updateDataUser($data);
+            if ($result !== false) {
+                Flasher::setFlash('User Berhasil', 'diUpdate', 'success');
+                header('Location: ' . BASE_URL . '/user');
+                exit;
+            } else {
+                Flasher::setFlash('Gagal', 'diUpdate', 'error');
+                header('Location: ' . BASE_URL . '/user');
+                exit;
+            }
+        }
+    }
+}

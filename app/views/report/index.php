@@ -9,16 +9,18 @@
                 <!-- Form pertama (lebih lebar) -->
                 <form method="post" class="row g-3 mt-2 flex-grow-1">
                     <div class="col-lg-3 col-md-6">
+                        <label for="tgl_dari"><b>Date From : </b></label>
                         <input type="date" class="form-control" id="tgl_dari" name="tgl_dari"
                             value="<?= $data['tgl_dari'] ?>" max="<?= date('Y-m-d') ?>" required>
                     </div>
                     <div class="col-lg-3 col-md-6">
+                        <label for="tgl_dari"><b> Date Thru : </b></label>
                         <input type="date" class="form-control" id="tgl_ke" name="tgl_ke"
                             value="<?= $data['tgl_ke'] ?>" max="<?= date('Y-m-d') ?>" required>
                     </div>
-                    <div class="col-lg-6 col-md-4 d-flex justify-content-start gap-2">
-                        <button type="submit" class="btn btn-primary mb-3"><i class="fa fa-search"></i> Cari Data</button>
-                        <a href="<?= BASE_URL; ?>/report/clear" class="btn btn-secondary mb-3">
+                    <div class="col-lg-6 col-md-4 d-flex justify-content-start gap-2 ">
+                        <button type="submit" class="btn btn-primary mb-3 mt-4"><i class="fa fa-search"></i> Cari Data</button>
+                        <a href="<?= BASE_URL; ?>/report/clear" class="btn btn-secondary mb-3 mt-4">
                             <i class="fa fa-refresh"></i> Refresh
                         </a>
                     </div>
@@ -31,7 +33,7 @@
                         <?php if ($userRole === 'agen'): ?>
                             <input type="hidden" name="user_id" value="<?= $_SESSION['user']['username'] ?>">
                         <?php endif; ?>
-                        <button type="submit" class="btn btn-info mb-3 text-white">
+                        <button type="submit" class="btn btn-info mb-3 text-white mt-4">
                             <i class="fa fa-download"></i> Download
                         </button>
                     </form>
