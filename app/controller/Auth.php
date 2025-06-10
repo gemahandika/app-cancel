@@ -23,6 +23,18 @@ class Auth
         $model = new User_models();
         $user = $model->getUserByUsername($username);
 
+        if (!$user) {
+            Flasher::setLoginFlash('Username tidak ditemukan.', 'danger');
+            header('Location: ' . BASE_URL . '/auth');
+            exit;
+        }
+
+        if ($user['status'] === 'nonaktif') {
+            Flasher::setLoginFlash('User Anda dinonaktifkan', 'danger');
+            header('Location: ' . BASE_URL . '/auth');
+            exit;
+        }
+
         if ($user && md5($password) === $user['password']) {
             $_SESSION['login'] = true;
             $_SESSION['username'] = $user['username'];
@@ -32,7 +44,7 @@ class Auth
             header('Location: ' . BASE_URL . '/home');
             exit;
         } else {
-            Flasher::setLoginFlash('Username atau password salah.', 'danger');
+            Flasher::setLoginFlash('Password Anda Salah.', 'danger');
             header('Location: ' . BASE_URL . '/auth');
             exit;
         }

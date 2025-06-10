@@ -55,6 +55,23 @@ class Resi_models
         return $this->db->rowCount();
     }
 
+    public function updateDataResi($data)
+    {
+        $query = "UPDATE tb_resi 
+              SET no_resi = :no_resi,
+                  keterangan = :keterangan
+               WHERE id_resi = :id_resi";
+
+        $this->db->query($query);
+        $this->db->bind('no_resi', $data['no_resi']);
+        $this->db->bind('keterangan', $data['keterangan']);
+        $this->db->bind('id_resi', $data['id_resi']);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
     public function getReportByDateRange($from, $to)
     {
         $this->db->query('SELECT * FROM ' . $this->table . ' WHERE status = :status AND tgl_req BETWEEN :from AND :to ORDER BY id_resi DESC');

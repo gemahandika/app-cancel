@@ -62,6 +62,27 @@ class Home extends Controller
         }
     }
 
+    public function edit()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data = [
+                'id_resi' => $_POST['id_resi'],
+                'no_resi' => $_POST['no_resi'],
+                'keterangan' => $_POST['keterangan']
+            ];
+
+            if ($this->model('Resi_models')->updateDataResi($data) > 0) {
+                Flasher::setFlash('Resi Berhasil', 'diUpdate', 'success');
+                header('Location: ' . BASE_URL . '/home'); // sesuaikan route-nya
+                exit;
+            } else {
+                Flasher::setFlash('Gagal', 'diUpdate', 'error');
+                header('Location: ' . BASE_URL . '/home');
+                exit;
+            }
+        }
+    }
+
     public function kirimEmail()
     {
 

@@ -13,7 +13,7 @@ class User_models
 
     public function getUserByUsername($username)
     {
-        $this->db->query("SELECT * FROM {$this->table} WHERE username = :username AND status = 'aktif'");
+        $this->db->query("SELECT * FROM tb_user WHERE username = :username");
         $this->db->bind(':username', $username);
         return $this->db->single();
     }
