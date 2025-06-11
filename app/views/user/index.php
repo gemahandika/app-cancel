@@ -13,8 +13,6 @@
                        class="btn btn-primary btn-tambahUser"
                        data-bs-toggle="modal"
                        data-bs-target="#modalTambahUser"
-                       data-id="<?= $open['id_resi']; ?>"
-                       data-resi="<?= $open['no_resi']; ?>"
                        data-keterangan="<?= $open['keterangan']; ?>">
                        <i class="fa fa-plus"></i> Tambah User
                    </button>
@@ -30,6 +28,7 @@
                                <th class="small text-center">NO</th>
                                <th class="small text-center">USERNAME</th>
                                <th class="small text-center">NAMA AGEN</th>
+                               <th class="small text-center">CABANG</th>
                                <th class="small text-center">CUST ID</th>
                                <th class="small text-center">ROLE</th>
                                <th class="small text-center">STATUS</th>
@@ -46,6 +45,7 @@
                                    <td class="small text-center"><?= $no++ ?></td>
                                    <td class="small text-center"><?= $user['username']; ?></td>
                                    <td class="small text-center"><?= $user['name']; ?></td>
+                                   <td class="small text-center"><?= $user['cabang']; ?></td>
                                    <td class="small text-center"><?= $user['cust_id']; ?></td>
                                    <td class="small text-center"><?= $user['role']; ?></td>
                                    <td class="small text-center"><?= $user['status']; ?></td>
@@ -91,6 +91,15 @@
                            <label for="password" class="form-label">Password</label>
                            <input type="text" class="form-control" name="password" id="password" required>
                        </div>
+                       <div class="mb-4">
+                           <label for="cabang" class="form-label">Cabang</label><br>
+                           <select class="form-select select2 w-100" name="cabang" id="cabang" required>
+                               <option value="">Pilih Cabang</option>
+                               <?php foreach ($data['cabang'] as $row): ?>
+                                   <option value="<?= $row['nama_cabang']; ?>"><?= $row['nama_cabang']; ?></option>
+                               <?php endforeach; ?>
+                           </select>
+                       </div>
                        <div class="mb-3">
                            <label for="name" class="form-label">Nama Agen / KP</label>
                            <input type="text" class="form-control" name="name" id="name" required>
@@ -103,7 +112,7 @@
                            <label for="role" class="form-label">Role</label>
                            <select type="text" class="form-control" name="role" id="role" required>
                                <option value="agen">AGEN</option>
-                               <option value="user">KP</option>
+                               <option value="user">USER</option>
                                <option value="admin">ADMIN</option>
                            </select>
                        </div>
@@ -135,6 +144,15 @@
                        <div class="mb-3">
                            <label for="edit-name" class="form-label">Nama</label>
                            <input type="text" class="form-control" name="edit-name" id="edit-name" required>
+                       </div>
+                       <div class="mb-4">
+                           <label for="cabang" class="form-label">Cabang</label><br>
+                           <select class="form-select select2 w-100" name="edit-cabang" id="cabang" required>
+                               <option value="">Pilih Cabang</option>
+                               <?php foreach ($data['cabang'] as $row): ?>
+                                   <option value="<?= $row['nama_cabang']; ?>"><?= $row['nama_cabang']; ?></option>
+                               <?php endforeach; ?>
+                           </select>
                        </div>
                        <div class="mb-3">
                            <label for="edit-custid" class="form-label">Cust ID</label>

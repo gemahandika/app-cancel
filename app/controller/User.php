@@ -26,6 +26,7 @@ class User extends Controller
         $data['username'] = $username;
         $data['userRole'] = $userRole; // <-- Tambahkan baris ini
         $data['user'] = $this->model('User_models')->getAllUsers();
+        $data['cabang'] = $this->model('Cabang_models')->getAllCabang();
         $this->view('templates/header', $data);
         $this->view('user/index', $data);
         $this->view('templates/footer');
@@ -60,6 +61,7 @@ class User extends Controller
                 'username' => $_POST['edit-username'],
                 'role' => $_POST['edit-role'],
                 'name' => $_POST['edit-name'],
+                'cabang' => $_POST['edit-cabang'],
                 'cust_id' => $_POST['edit-custid'],
                 'status' => $_POST['edit-status']
             ];

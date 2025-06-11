@@ -20,7 +20,7 @@ class User_models
 
     public function getAllUsers()
     {
-        $this->db->query("SELECT * FROM {$this->table}");
+        $this->db->query("SELECT * FROM {$this->table} ORDER BY id DESC");
         return $this->db->resultSet();
     }
 
@@ -35,14 +35,15 @@ class User_models
             // Username sudah ada
             return 'duplicate';
         }
-        $query = "INSERT INTO {$this->table} (username, password, role, name, cust_id, status)
-              VALUES (:username, :password, :role, :name, :cust_id, :status)";
+        $query = "INSERT INTO {$this->table} (username, password, role, name, cabang, cust_id, status)
+              VALUES (:username, :password, :role, :name, :cabang, :cust_id, :status)";
 
         $this->db->query($query);
         $this->db->bind('username', $data['username']);
         $this->db->bind('password', md5($data['password']));
-        $this->db->bind('role', $data['role']); // tetap
-        $this->db->bind('name', $data['name']); // otomatis waktu sekarang
+        $this->db->bind('role', $data['role']);
+        $this->db->bind('name', $data['name']);
+        $this->db->bind('cabang', $data['cabang']);
         $this->db->bind('cust_id', $data['cust_id']);
         $this->db->bind('status', 'aktif');
 
@@ -57,6 +58,7 @@ class User_models
               SET username = :username,
                   role = :role,
                   name = :name,
+                  cabang = :cabang,
                   cust_id = :cust_id,
                   status = :status
                WHERE id = :id";
@@ -65,6 +67,7 @@ class User_models
         $this->db->bind('username', $data['username']);
         $this->db->bind('role', $data['role']);
         $this->db->bind('name', $data['name']);
+        $this->db->bind('cabang', $data['cabang']);
         $this->db->bind('cust_id', $data['cust_id']);
         $this->db->bind('status', $data['status']);
         $this->db->bind('id', $data['id']);
