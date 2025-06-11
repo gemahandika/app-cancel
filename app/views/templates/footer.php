@@ -12,29 +12,23 @@
 </footer>
 </div>
 </div>
-<!-- jQuery (harus sebelum Select2 JS) -->
+<!-- jQuery (harus sebelum Bootstrap & Select2) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap Bundle (harus sebelum script custom yang pakai modal/bootstrap) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
 <!-- Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#cabang').select2({
-            dropdownParent: $('#modalTambahUser'), // ganti ID dengan ID modal Anda
-            width: '100%' // ⬅️ penting!
-        });
-    });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="<?= BASE_URL; ?>/js/scripts.js"></script>
+
+<!-- DataTables (pastikan hanya pakai satu versi untuk hindari konflik) -->
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-<script src="<?= BASE_URL; ?>/js/datatables-simple-demo.js"></script>
 <script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
+
+<!-- Script Aplikasi -->
+<script src="<?= BASE_URL; ?>/js/scripts.js"></script>
+<script src="<?= BASE_URL; ?>/js/datatables-simple-demo.js"></script>
 <script src="<?= BASE_URL; ?>/js/custom.js"></script>
-
-
-
-
 
 <script>
     new DataTable('#example', {

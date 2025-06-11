@@ -52,12 +52,11 @@
                                    <td class="text-center">
                                        <button
                                            class="btn btn-warning btn-sm btn-editUser"
-                                           data-bs-toggle="modal"
-                                           data-bs-target="#modalEdit"
                                            data-id="<?= $user['id']; ?>"
                                            data-user="<?= $user['username']; ?>"
                                            data-password="<?= $user['password']; ?>"
                                            data-name="<?= $user['name']; ?>"
+                                           data-cabang="<?= $user['cabang']; ?>"
                                            data-role="<?= $user['role']; ?>"
                                            data-custid="<?= $user['cust_id']; ?>"
                                            data-status="<?= $user['status']; ?>">
@@ -74,12 +73,12 @@
    </main>
 
    <!-- Modal Tambah -->
-   <div class="modal fade" id="modalTambahUser" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+   <div class="modal fade" id="modalTambahUser" tabindex="-1" aria-labelledby="modalTambahUserLabel" aria-hidden="true">
        <div class="modal-dialog">
            <div class="modal-content">
                <form action="<?= BASE_URL; ?>/user/tambahUser" method="POST">
                    <div class="modal-header bg-primary text-white">
-                       <h5 class="modal-title " id="modalEditLabel">Tambah Data User</h5>
+                       <h5 class="modal-title " id="modalTambahUserLabel">Tambah Data User</h5>
                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                    </div>
                    <div class="modal-body">
@@ -127,12 +126,12 @@
    </div>
 
    <!-- Modal Edit -->
-   <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+   <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditUserLabel" aria-hidden="true">
        <div class="modal-dialog">
            <div class="modal-content">
                <form action="<?= BASE_URL; ?>/user/editUser" method="POST">
                    <div class="modal-header bg-primary text-white">
-                       <h5 class="modal-title " id="modalEditLabel">Edit Data User</h5>
+                       <h5 class="modal-title " id="modalEditUserLabel">Edit Data User</h5>
                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                    </div>
                    <div class="modal-body">
@@ -147,7 +146,7 @@
                        </div>
                        <div class="mb-4">
                            <label for="cabang" class="form-label">Cabang</label><br>
-                           <select class="form-select select2 w-100" name="edit-cabang" id="cabang" required>
+                           <select class="form-select select2 w-100" name="edit-cabang" id="cabang-edit" required>
                                <option value="">Pilih Cabang</option>
                                <?php foreach ($data['cabang'] as $row): ?>
                                    <option value="<?= $row['nama_cabang']; ?>"><?= $row['nama_cabang']; ?></option>
