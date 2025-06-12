@@ -2,8 +2,8 @@
        <div class="container-fluid px-4">
            <h4 class="mt-4" style="border-bottom: solid 1px black;">Form Cancel Resi</h4>
            <div class="alert alert-primary" role="alert">
-               <b>Perhatian !!</b> Resi yang di request cancel atau status nya OPEN, akan pindah ke report setelah di proses oleh ADMIN / TIM IT <br>
-               <span class="fw-bold text-danger"><b>Noted :</b> Untuk cancel resi cashless silahkan info ke pengirim untuk di cancel di marketplacenya</span>
+               <b>Noted :</b> Resi yang di request cancel atau status nya OPEN, akan pindah ke report setelah di proses oleh ADMIN / TIM IT <br>
+               <span class="fw-bold text-danger"><b>Perhatian !!</b> Untuk cancel resi cashless silahkan info ke pengirim untuk di cancel di marketplacenya</span>
            </div>
            <?php Flasher::flash();  ?>
            <div class="card mb-4 mt-4">
