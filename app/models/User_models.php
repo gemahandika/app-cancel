@@ -40,7 +40,7 @@ class User_models
 
         $this->db->query($query);
         $this->db->bind('username', $data['username']);
-        $this->db->bind('password', md5($data['password']));
+        $this->db->bind('password', password_hash($data['password'], PASSWORD_DEFAULT));
         $this->db->bind('role', $data['role']);
         $this->db->bind('name', $data['name']);
         $this->db->bind('cabang', $data['cabang']);
@@ -76,6 +76,24 @@ class User_models
 
         return $this->db->rowCount();
     }
+
+
+    public function updateDataPass($data)
+    {
+        $query = "UPDATE {$this->table}
+              SET password = :password
+               WHERE id = :id";
+
+        $this->db->query($query);
+        $this->db->bind('password', password_hash($data['password'], PASSWORD_DEFAULT));
+        $this->db->bind('id', $data['id']);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+
 
     public function updateStatus($id, $status)
     {

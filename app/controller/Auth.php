@@ -35,21 +35,42 @@ class Auth
             exit;
         }
 
-        if ($user && md5($password) === $user['password']) {
-            $_SESSION['login'] = true;
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['role'] = $user['role'];
-            $_SESSION['name'] = $user['name'];
-            $_SESSION['cabang'] = $user['cabang'];
-            Flasher::setLoginFlash('Login berhasil sebagai ' . $user['role'], 'success');
-            header('Location: ' . BASE_URL . '/home');
-            exit;
+        // Password sudah di-hash dengan password_hash
+        if (password_verify($password, $user['password'])) {
+            $this->setSession($user);
+        }
+        // Password masih MD5, cocokkan dan perbarui
+        elseif (md5($password) === $user['password']) {
+            // Update ke hash baru
+            $model->updateDataPass([
+                'id' => $user['id'],
+                'password' => $password // akan di-hash di dalam fungsi
+            ]);
+
+            // Ambil ulang user setelah update password
+            $user = $model->getUserByUsername($username);
+
+            $this->setSession($user);
         } else {
             Flasher::setLoginFlash('Password Anda Salah.', 'danger');
             header('Location: ' . BASE_URL . '/auth');
             exit;
         }
     }
+
+
+    private function setSession($user)
+    {
+        $_SESSION['login'] = true;
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['role'] = $user['role'];
+        $_SESSION['name'] = $user['name'];
+        $_SESSION['cabang'] = $user['cabang'];
+        Flasher::setLoginFlash('Login berhasil sebagai ' . $user['role'], 'success');
+        header('Location: ' . BASE_URL . '/home');
+        exit;
+    }
+
 
     public function logout()
     {

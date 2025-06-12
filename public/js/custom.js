@@ -56,4 +56,21 @@ document.addEventListener('DOMContentLoaded', function () {
         const modal = new bootstrap.Modal(document.getElementById('modalEdit'));
         modal.show();
     });
+
+
+    $(document).on('click', '.btn-editPass', function () {
+        $('.modal').modal('hide');
+
+        const id = $(this).data('id');
+        const username = $(this).data('username');
+        // const pass = $(this).data('pass');
+
+        $('#edit-id-pass').val(id);
+        $('#usernamePass').val(username);
+        $('#edit-pass').val(''); // (lihat catatan keamanan di bawah)
+
+        const modal = new bootstrap.Modal(document.getElementById('modalEditPass'));
+        modal.show();
+    });
+
 });

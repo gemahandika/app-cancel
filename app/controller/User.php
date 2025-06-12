@@ -78,4 +78,35 @@ class User extends Controller
             }
         }
     }
+
+    public function editPass()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = isset($_POST['id']) ? trim($_POST['id']) : null;
+            $password = isset($_POST['edit-pass']) ? trim($_POST['edit-pass']) : null;
+            // Validasi sederhana
+            if (!$id || !$password) {
+                Flasher::setFlash('ID atau Password tidak boleh kosong', '', 'error');
+                header('Location: ' . BASE_URL . '/user');
+                exit;
+            }
+            $data = [
+                'id' => $id,
+                'password' => $password
+            ];
+            $result = $this->model('User_models')->updateDataPass($data);
+            if ($result > 0) {
+                Flasher::setFlash('Password Berhasil', 'diUpdate', 'success');
+            } else {
+                Flasher::setFlash('Password Gagal', 'diUpdate', 'error');
+            }
+            header('Location: ' . BASE_URL . '/user');
+            exit;
+        } else {
+            // Jika akses langsung tanpa POST
+            Flasher::setFlash('Akses tidak valid', '', 'error');
+            header('Location: ' . BASE_URL . '/user');
+            exit;
+        }
+    }
 }

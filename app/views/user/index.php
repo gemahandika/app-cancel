@@ -50,18 +50,25 @@
                                    <td class="small text-center"><?= $user['role']; ?></td>
                                    <td class="small text-center"><?= $user['status']; ?></td>
                                    <td class="text-center">
-                                       <button
-                                           class="btn btn-warning btn-sm btn-editUser"
-                                           data-id="<?= $user['id']; ?>"
-                                           data-user="<?= $user['username']; ?>"
-                                           data-password="<?= $user['password']; ?>"
-                                           data-name="<?= $user['name']; ?>"
-                                           data-cabang="<?= $user['cabang']; ?>"
-                                           data-role="<?= $user['role']; ?>"
-                                           data-custid="<?= $user['cust_id']; ?>"
-                                           data-status="<?= $user['status']; ?>">
-                                           <i class="fa fa-edit"></i> EDIT
-                                       </button>
+                                       <div class="d-flex justify-content-center align-items-center gap-2">
+                                           <button
+                                               class="btn btn-warning btn-sm btn-editUser d-flex align-items-center gap-1"
+                                               data-id="<?= $user['id']; ?>"
+                                               data-user="<?= $user['username']; ?>"
+                                               data-name="<?= $user['name']; ?>"
+                                               data-cabang="<?= $user['cabang']; ?>"
+                                               data-role="<?= $user['role']; ?>"
+                                               data-custid="<?= $user['cust_id']; ?>"
+                                               data-status="<?= $user['status']; ?>">
+                                               <i class="fa fa-edit"></i> EDIT
+                                           </button>
+                                           <button
+                                               class="btn btn-success btn-sm btn-editPass d-flex align-items-center gap-1"
+                                               data-id="<?= $user['id']; ?>"
+                                               data-username="<?= $user['username']; ?>">
+                                               <i class="fa fa-lock"></i> <span>PASS</span>
+                                           </button>
+                                       </div>
                                    </td>
                                </tr>
                            <?php endforeach; ?>
@@ -125,7 +132,7 @@
        </div>
    </div>
 
-   <!-- Modal Edit -->
+   <!-- Modal Edit  User-->
    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditUserLabel" aria-hidden="true">
        <div class="modal-dialog">
            <div class="modal-content">
@@ -179,6 +186,36 @@
                    <div class="modal-footer">
                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                        <button type="submit" class="btn btn-primary">Update</button>
+                   </div>
+               </form>
+           </div>
+       </div>
+   </div>
+
+   <!-- Modal Edit Pass -->
+   <div class="modal fade" id="modalEditPass" tabindex="-1" aria-labelledby="modalEditPassLabel" aria-hidden="true">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <form action="<?= BASE_URL; ?>/user/editPass" method="POST">
+                   <div class="modal-header bg-primary text-white">
+                       <h5 class="modal-title" id="modalEditPassLabel">Edit Password User</h5>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                   </div>
+                   <div class="modal-body">
+                       <!-- Gunakan hidden input untuk ID -->
+                       <input type="hidden" name="id" id="edit-id-pass">
+                       <div class="mb-3">
+                           <label for="usernamePass" class="form-label"><b>Username</b></label>
+                           <input type="text" class="form-control" name="usernamePass" id="usernamePass" required readonly>
+                       </div>
+                       <div class="mb-3">
+                           <label for="edit-pass" class="form-label fw-bold">Password Baru</label>
+                           <input type="text" class="form-control" name="edit-pass" id="edit-pass" required placeholder="Masukkan password baru">
+                       </div>
+                   </div>
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                       <button type="submit" class="btn btn-primary">Update Password</button>
                    </div>
                </form>
            </div>
