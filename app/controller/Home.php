@@ -71,7 +71,8 @@ class Home extends Controller
                 'keterangan' => $_POST['keterangan']
             ];
 
-            if ($this->model('Resi_models')->updateDataResi($data) > 0) {
+            $result = $this->model('Resi_models')->updateDataResi($data);
+            if ($result !== false) {
                 Flasher::setFlash('Resi Berhasil', 'diUpdate', 'success');
                 header('Location: ' . BASE_URL . '/home'); // sesuaikan route-nya
                 exit;

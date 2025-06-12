@@ -1,8 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Modal Bootstrap
-    const modalTambahUser = new bootstrap.Modal(document.getElementById('modalTambahUser'));
-    const modalEditUser = new bootstrap.Modal(document.getElementById('modalEdit'));
-
     // Inisialisasi Select2 Tambah
     const selectTambah = document.querySelector('#cabang');
     if (selectTambah) {
@@ -20,32 +16,44 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Tombol Edit User (gunakan event delegation karena pakai DataTables)
-   $(document).on('click', '.btn-editUser', function () {
-    // Tutup semua modal jika masih ada yang terbuka
-    $('.modal').modal('hide');
+    // Tombol Edit Resi
+    $(document).on('click', '.btn-editResi', function () {
+        $('.modal').modal('hide'); // tutup modal lain
 
-    // Ambil data
-    const id = $(this).data('id');
-    const username = $(this).data('user');
-    const name = $(this).data('name');
-    const cabang = $(this).data('cabang');
-    const custid = $(this).data('custid');
-    const role = $(this).data('role');
-    const status = $(this).data('status');
+        const id = $(this).data('id');
+        const resi = $(this).data('resi');
+        const keterangan = $(this).data('keterangan');
 
-    // Isi data ke form
-    $('#edit-id').val(id);
-    $('#edit-username').val(username);
-    $('#edit-name').val(name);
-    $('#edit-custid').val(custid);
-    $('#edit-role').val(role);
-    $('#edit-status').val(status);
-    $('#cabang-edit').val(cabang).trigger('change');
+        $('#edit-idResi').val(id);
+        $('#edit-resi').val(resi);
+        $('#edit-keterangan').val(keterangan);
 
-    // Tampilkan modal edit
-    const modal = new bootstrap.Modal(document.getElementById('modalEdit'));
-    modal.show();
-});
+        // Panggil modal di sini (DIPASTIKAN modalEditResi sudah ada)
+        const modal = new bootstrap.Modal(document.getElementById('modalEditResi'));
+        modal.show();
+    });
 
+    // Tombol Edit User
+    $(document).on('click', '.btn-editUser', function () {
+        $('.modal').modal('hide');
+
+        const id = $(this).data('id');
+        const username = $(this).data('user');
+        const name = $(this).data('name');
+        const cabang = $(this).data('cabang');
+        const custid = $(this).data('custid');
+        const role = $(this).data('role');
+        const status = $(this).data('status');
+
+        $('#edit-id').val(id);
+        $('#edit-username').val(username);
+        $('#edit-name').val(name);
+        $('#edit-custid').val(custid);
+        $('#edit-role').val(role);
+        $('#edit-status').val(status);
+        $('#cabang-edit').val(cabang).trigger('change');
+
+        const modal = new bootstrap.Modal(document.getElementById('modalEdit'));
+        modal.show();
+    });
 });

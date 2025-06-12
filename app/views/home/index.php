@@ -69,13 +69,11 @@
                                    <td class="small text-center"><?= $open['status']; ?></td>
                                    <td class="text-center">
                                        <button
-                                           class="btn btn-warning btn-sm btn-edit"
-                                           data-bs-toggle="modal"
-                                           data-bs-target="#modalEdit"
+                                           class="btn btn-warning btn-sm btn-editResi"
                                            data-id="<?= $open['id_resi']; ?>"
                                            data-resi="<?= $open['no_resi']; ?>"
                                            data-keterangan="<?= $open['keterangan']; ?>">
-                                           EDIT
+                                           <i class="fa fa-edit"></i>EDIT
                                        </button>
 
                                    </td>
@@ -89,16 +87,16 @@
    </main>
 
    <!-- Modal Edit -->
-   <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+   <div class="modal fade" id="modalEditResi" tabindex="-1" aria-labelledby="modalEditResiLabel" aria-hidden="true">
        <div class="modal-dialog">
            <div class="modal-content">
                <form action="<?= BASE_URL; ?>/home/edit" method="POST">
                    <div class="modal-header bg-primary text-white">
-                       <h5 class="modal-title " id="modalEditLabel">Edit Data</h5>
+                       <h5 class="modal-title " id="modalEditResiLabel">Edit Data</h5>
                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                    </div>
                    <div class="modal-body">
-                       <input type="hidden" name="id_resi" id="edit-id">
+                       <input type="hidden" name="id_resi" id="edit-idResi">
 
                        <div class="mb-3">
                            <label for="edit-resi" class="form-label">No Resi</label>
