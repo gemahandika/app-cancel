@@ -39,8 +39,8 @@ class Resi_models
             // Username sudah ada
             return 'duplicate';
         }
-        $query = "INSERT INTO tb_resi (no_resi, keterangan, status, tgl_req, user_id, nama_agen)
-              VALUES (:no_resi, :keterangan, :status, :tgl_req, :user_id, :name)";
+        $query = "INSERT INTO tb_resi (no_resi, keterangan, status, tgl_req, user_id, nama_agen, cabang)
+              VALUES (:no_resi, :keterangan, :status, :tgl_req, :user_id, :name, :cabang)";
 
         $this->db->query($query);
         $this->db->bind('no_resi', $data['no_resi']);
@@ -49,6 +49,7 @@ class Resi_models
         $this->db->bind('tgl_req', date('Y-m-d H:i:s')); // otomatis waktu sekarang
         $this->db->bind('user_id', $data['user_id']);
         $this->db->bind('name', $data['name']);
+        $this->db->bind('cabang', $_SESSION['cabang']);
 
         $this->db->execute();
 

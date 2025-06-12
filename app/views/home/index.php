@@ -47,6 +47,7 @@
                                <th class="small text-center">NOMOR RESI</th>
                                <th class="small text-center">KETERANGAN</th>
                                <th class="small text-center">NAMA AGEN</th>
+                               <th class="small text-center">BRANCH</th>
                                <th class="small text-center">USER ID</th>
                                <th class="small text-center">TGL REQ CANCEL</th>
                                <th class="small text-center">STATUS</th>
@@ -64,6 +65,7 @@
                                    <td class="small text-center"><?= $open['no_resi']; ?></td>
                                    <td class="small text-center"><?= $open['keterangan']; ?></td>
                                    <td class="small text-center"><?= $open['nama_agen']; ?></td>
+                                   <td class="small text-center"><?= $open['cabang']; ?></td>
                                    <td class="small text-center"><?= $open['user_id']; ?></td>
                                    <td class="small text-center"><?= $open['tgl_req']; ?></td>
                                    <td class="small text-center"><?= $open['status']; ?></td>
