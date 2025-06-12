@@ -112,8 +112,12 @@ class Home extends Controller
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
-            $mail->setFrom('mes.it2@jne.co.id', 'IT JNE MES');
-            $mail->addAddress('mes.it@jne.co.id', 'Helpdesk'); // Ganti tujuan
+            $mail->setFrom('mes.it@jne.co.id', 'IT JNE MES');
+            $mail->addAddress('ithelpdesk@jne.co.id', 'Team IT Helpdesk'); // Ganti tujuan
+            $mail->addCC('mes.it@jne.co.id', 'Team IT');
+            $mail->addCC('mes.it1@jne.co.id', 'Team IT');
+            $mail->addCC('mes.it2@jne.co.id', 'Team IT');
+            $mail->addCC('sigit.suprihandoko@jne.co.id', 'Head IT');
 
             $mail->Subject = 'Cancel Resi Orion Hybrid';
             $mail->Body    = $isiEmail;
