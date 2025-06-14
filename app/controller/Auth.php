@@ -66,7 +66,7 @@ class Auth
         $_SESSION['role'] = $user['role'];
         $_SESSION['name'] = $user['name'];
         $_SESSION['cabang'] = $user['cabang'];
-        Flasher::setLoginFlash('Login berhasil sebagai ' . $user['role'], 'success');
+        Flasher::setLoginFlash('Login berhasil', 'success');
         header('Location: ' . BASE_URL . '/home');
         exit;
     }
